@@ -6,13 +6,15 @@ MODULE RefCoef
   SAVE
   INTEGER, PARAMETER            :: BRCFile = 31, TRCFile = 32, IRCFile = 12
   INTEGER                       :: NBotPts, NTopPts
+  INTEGER                       :: Nthickness
+  real(kind=8)                  :: min_thickness,res_thickness
   INTEGER                       :: NkTab
   INTEGER,          ALLOCATABLE :: iTab( : )
   REAL    (KIND=8), ALLOCATABLE :: xTab( : )
   COMPLEX (KIND=8), ALLOCATABLE :: fTab( : ), gTab( : )
 
   TYPE ReflectionCoef
-      REAL(KIND=8) :: theta, R, phi
+      REAL(KIND=8) :: theta, R, phi,thickness
   END TYPE
 
   TYPE(ReflectionCoef), ALLOCATABLE :: RBot( : ), RTop( : )
@@ -70,15 +72,16 @@ CONTAINS
           CALL ERROUT( 'ReadReflectionCoefficient', 'Unable to open Top Reflection Coefficient file' )
        END IF
 
+       READ(  TRCFile, * ) NThickness,min_thickness,res_thickness  !number of thickness values
        READ(  TRCFile, * ) NTopPts
-       WRITE( PRTFile, * ) 'Number of points in top reflection coefficient = ', NTopPts
+       WRITE( PRTFile, * ) 'Number of points in top reflection coefficient for each thickness= ', NTopPts
 
        IF ( ALLOCATED( RTop ) ) DEALLOCATE( RTop )
        ALLOCATE( RTop( NTopPts ), Stat = IAllocStat )
        IF ( iAllocStat /= 0 ) &
           CALL ERROUT( 'ReadReflectionCoefficient', 'Insufficient memory for top refl. coef.: reduce # points'  )
 
-       READ(  TRCFile, * ) ( RTop( itheta ), itheta = 1, NTopPts )
+       READ(  TRCFile, * ) ( RTop( itheta ), itheta = 1, NThickness*NTopPts )
        CLOSE( TRCFile )
        RTop%phi = DegRad *  RTop%phi   ! convert to radians
     ELSE   ! should allocate something anyway, since variable is passed

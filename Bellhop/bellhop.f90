@@ -596,7 +596,8 @@ END SUBROUTINE Distances2D
 ! **********************************************************************!
 
 SUBROUTINE Reflect2D( is, HS, BotTop, tBdry, nBdry, kappa, RefC, Npts )
-
+!use bdrymod,only: Top
+   use interpolation
   INTEGER,              INTENT( IN ) :: Npts
   REAL     (KIND=8),    INTENT( IN ) :: tBdry( 2 ), nBdry( 2 )  ! Tangent and normal to the boundary
   REAL     (KIND=8),    INTENT( IN ) :: kappa                   ! Boundary curvature
@@ -611,6 +612,8 @@ SUBROUTINE Reflect2D( is, HS, BotTop, tBdry, nBdry, kappa, RefC, Npts )
   COMPLEX  (KIND=8) :: kx, kz, kzP, kzS, kzP2, kzS2, mu, f, g, y2, y4, Refl   ! for tabulated reflection coef.
   COMPLEX  (KIND=8) :: ch, a, b, d, sb, delta, ddelta                 ! for beam shift
   TYPE(ReflectionCoef) :: RInt
+  integer           :: i1, i2
+  REAL (KIND=8), ALLOCATABLE :: thickness(:),temp1(:)
 
   is  = is + 1
   is1 = is + 1
@@ -672,9 +675,13 @@ SUBROUTINE Reflect2D( is, HS, BotTop, tBdry, nBdry, kappa, RefC, Npts )
      ray2D( is1 )%Amp   = ray2D( is )%Amp
      ray2D( is1 )%Phase = ray2D( is )%Phase + pi
   CASE ( 'F' )                 ! file
+     temp1 = ray2D(is)%x(1)
+     call interp1(Top%x(1),Top%x(2),temp1,thickness)
+     i1 = (thickness(1) - min_thickness)/res_thickness*Npts + 1
+     i2 = i1 -1 + Npts     
      RInt%theta = RadDeg * ABS( ATAN2( Th, Tg ) )           ! angle of incidence (relative to normal to bathymetry)
      IF ( RInt%theta > 90 ) RInt%theta = 180. - RInt%theta  ! reflection coefficient is symmetric about 90 degrees
-     CALL InterpolateReflectionCoefficient( RInt, RefC, Npts, PRTFile )
+     CALL InterpolateReflectionCoefficient( RInt, RefC(i1:i2), Npts, PRTFile )
      ray2D( is1 )%Amp   = ray2D( is )%Amp * RInt%R
      ray2D( is1 )%Phase = ray2D( is )%Phase + RInt%phi
   CASE ( 'A', 'G' )            ! half-space
