@@ -1,0 +1,403 @@
+ BELLHOP/BELLHOP3D
+
+ BELLHOP- RI                                                                     
+ frequency =   2000.     Hz
+
+ Dummy parameter NMedia =            1
+
+     C-linear approximation to SSP
+     Attenuation units: dB/mkHz
+     THORP volume attenuation added
+     Altimetry file selected
+     FILE used for reflection loss
+
+ Depth =    3750.00 m
+
+ Sound speed profile:
+   z (m)     alphaR (m/s)   betaR  rho (g/cm^3)  alphaI     betaI
+
+      0.00      1436.00      0.00     1.00       0.0000    0.0000
+    200.00      1458.40      0.00     1.00       0.0000    0.0000
+    300.00      1460.50      0.00     1.00       0.0000    0.0000
+   1000.00      1466.70      0.00     1.00       0.0000    0.0000
+   2000.00      1479.60      0.00     1.00       0.0000    0.0000
+   2500.00      1487.90      0.00     1.00       0.0000    0.0000
+   3750.00      1510.40      0.00     1.00       0.0000    0.0000
+
+                                 ( RMS roughness =   0.00     )
+     ACOUSTO-ELASTIC half-space
+   3750.00      1580.00      0.00     1.60       0.5000    0.0000
+
+ __________________________________________________________________________
+
+ Number of Source   depths, Sz =            1
+ Source   depths, Sz (m)
+   30.0000    
+
+
+ __________________________________________________________________________
+
+ Number of Receiver depths, Rz =            1
+ Receiver depths, Rz (m)
+   30.0000    
+
+
+ __________________________________________________________________________
+
+ Number of Receiver ranges, Rr =            1
+ Receiver ranges, Rr (km)
+   10.0000    
+
+
+ Ray trace run
+ Geometric hat beams in Cartesian coordinates
+ Point source (cylindrical coordinates)
+ Rectilinear receiver grid: Receivers at Rr( : ) x Rz( : )
+ __________________________________________________________________________
+
+ Number of beams in elevation   =           31
+ Beam take-off angles (degrees)
+  -15.0000      -14.0000      -13.0000      -12.0000      -11.0000    
+  -10.0000      -9.00000      -8.00000      -7.00000      -6.00000    
+          ... 
+   15.0000    
+
+ __________________________________________________________________________
+
+
+ Step length,       deltas =   0.000     m
+
+ Maximum ray depth, Box%z  =   3800.     m
+ Maximum ray range, Box%r  =   101.0    km
+ No beam shift in effect
+
+ __________________________________________________________________________
+
+ Using top-altimetry file
+ Piecewise linear interpolation
+ Number of altimetry points =            5
+
+  Range (km)  Depth (m)
+   0.00       0.00    
+   10.0       0.00    
+   20.0       50.0    
+   30.0       0.00    
+   101.       0.00    
+ before readReflectionco 
+ __________________________________________________________________________
+
+ Using tabulated top    reflection coef.
+ top reflection coefficient thickness parameters=            3   0.0000000000000000        1.0000000000000000     
+ Number of points in top reflection coefficient for each thickness=            9
+   0.0000000000000000       -1.0000000000000000        0.0000000000000000     
+   10.000000000000000       -1.0000000000000000        0.0000000000000000     
+   20.000000000000000       -1.0000000000000000        0.0000000000000000     
+   30.000000000000000       -1.0000000000000000        0.0000000000000000     
+   40.000000000000000       -1.0000000000000000        0.0000000000000000     
+   50.000000000000000       -1.0000000000000000        0.0000000000000000     
+   60.000000000000000       -1.0000000000000000        0.0000000000000000     
+   70.000000000000000       -1.0000000000000000        0.0000000000000000     
+   80.000000000000000       -1.0000000000000000        0.0000000000000000     
+   0.0000000000000000       -1.0000000000000000        0.0000000000000000     
+   10.000000000000000       0.80000000000000004        0.0000000000000000     
+   20.000000000000000       0.69999999999999996        0.0000000000000000     
+   30.000000000000000        1.0000000000000000        0.0000000000000000     
+   40.000000000000000       0.80000000000000004        0.0000000000000000     
+   50.000000000000000       0.69999999999999996        0.0000000000000000     
+   60.000000000000000        1.0000000000000000        0.0000000000000000     
+   70.000000000000000       0.80000000000000004        0.0000000000000000     
+   80.000000000000000       0.69999999999999996        0.0000000000000000     
+   0.0000000000000000        1.0000000000000000        0.0000000000000000     
+   10.000000000000000       0.80000000000000004        0.0000000000000000     
+   20.000000000000000       0.69999999999999996        0.0000000000000000     
+   30.000000000000000        1.0000000000000000        0.0000000000000000     
+   40.000000000000000       0.80000000000000004        0.0000000000000000     
+   50.000000000000000       0.69999999999999996        0.0000000000000000     
+   60.000000000000000        1.0000000000000000        0.0000000000000000     
+   70.000000000000000       0.80000000000000004        0.0000000000000000     
+   80.000000000000000       0.69999999999999996        0.0000000000000000     
+ after readReflectionco 
+
+ Step length,       deltas =   375.0     m (automatically selected)
+
+Tracing beam       1     -1.00
+ before Reflect
+ 681, temp1   681.62864336936377     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam       2      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam       3     10.00
+ before Reflect
+ 681, temp1   19174.694467048015     
+ thickness=   45.873472335240081     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam       4      0.80
+ before Reflect
+ 681, temp1   1075.4791696116647     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam       5      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam       6     20.00
+ before Reflect
+ 681, temp1   29284.183006129835     
+ thickness=   3.5790849693508262     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam       7      0.70
+ before Reflect
+ 681, temp1   1048.8088691274197     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam       8      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam       9     30.00
+ before Reflect
+ 681, temp1   14623.378350618934     
+ thickness=   23.116891753094670     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      10      1.00
+ before Reflect
+ 681, temp1   1130.4345011108426     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      11      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      12     40.00
+ before Reflect
+ 681, temp1   9555.8427873410528     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      13      0.80
+ before Reflect
+ 681, temp1   1075.4791696116647     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      14      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      15     50.00
+ before Reflect
+ 681, temp1   6579.7330091830481     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      16      0.70
+ before Reflect
+ 681, temp1   1048.8088691274197     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      17      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      18     60.00
+ before Reflect
+ 681, temp1   4477.4090399538909     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      19      1.00
+ before Reflect
+ 681, temp1   1130.4345011108426     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      20      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      21     70.00
+ before Reflect
+ 681, temp1   2806.1015894623633     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      22      0.80
+ before Reflect
+ 681, temp1   1075.4791696116647     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      23      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      24     80.00
+ before Reflect
+ 681, temp1   1355.4512891065065     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      25      0.70
+ before Reflect
+ 681, temp1   1048.8088691274197     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      26      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      27      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      28      1.00
+ before Reflect
+ 681, temp1   1130.4345011108426     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      29      0.00
+ before Reflect
+ 681, temp1   877.79201310533915     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      30     10.00
+ before Reflect
+ 681, temp1   19174.694467048015     
+ thickness=   45.873472335240081     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+Tracing beam      31      0.80
+ before Reflect
+ 681, temp1   1075.4791696116647     
+ thickness=   0.0000000000000000     
+ 683
+ 685
+ 688
+ 690
+ after Reflect
+
+ CPU Time =       0.312E-01s

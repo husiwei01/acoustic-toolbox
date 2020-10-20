@@ -129,8 +129,10 @@ PROGRAM BELLHOP
   ELSE
      CALL ReadEnvironment(  FileRoot, ThreeD )
      CALL ReadATI( FileRoot, Bdry%Top%HS%Opt( 5 : 5 ), Bdry%Top%HS%Depth, PRTFile )                          ! AlTImetry
-     CALL ReadBTY( FileRoot, Bdry%Bot%HS%Opt( 2 : 2 ), Bdry%Bot%HS%Depth, PRTFile )                          ! BaThYmetry
+     CALL ReadBTY( FileRoot, Bdry%Bot%HS%Opt( 2 : 2 ), Bdry%Bot%HS%Depth, PRTFile ) 
+     write( PRTFile, * ) 'before readReflectionco '   
      CALL ReadReflectionCoefficient( FileRoot, Bdry%Bot%HS%Opt( 1 : 1 ), Bdry%Top%HS%Opt( 2 : 2 ), PRTFile ) ! (top and bottom)
+     write( PRTFile, * ) 'after readReflectionco '   
      SBPFlag = Beam%RunType( 3 : 3 )
      CALL ReadPat( FileRoot, PRTFile )   ! Source Beam Pattern
      ! dummy bearing angles
@@ -285,7 +287,6 @@ SUBROUTINE BellhopCore
 
               epsilon = PickEpsilon( Beam%Type( 1 : 2 ), omega, c, gradc, Angles%alpha( ialpha ), &
                    Angles%Dalpha, Beam%rLoop, Beam%epsMultiplier ) ! 'optimal' beam constant
-
               SELECT CASE ( Beam%Type( 1 : 1 ) )
               CASE ( 'R' )
                  iBeamWindow2 = Beam%iBeamWindow **2
@@ -528,8 +529,9 @@ SUBROUTINE TraceRay2D( xs, alpha, Amp0 )
            TopnInt = Top( IsegTop )%n   ! normal is constant in a segment
            ToptInt = Top( IsegTop )%t
         END IF
-
+        WRITE( PRTFile, * ) 'before Reflect'
         CALL Reflect2D( is, Bdry%Top%HS, 'TOP', ToptInt, TopnInt, Top( IsegTop )%kappa, RTop, NTopPTS )
+        WRITE( PRTFile, * ) 'after Reflect'
         ray2D( is + 1 )%NumTopBnc = ray2D( is )%NumTopBnc + 1
 
         CALL Distances2D( ray2D( is + 1 )%x, Top( IsegTop )%x, Bot( IsegBot )%x, dEndTop,    dEndBot,  &
@@ -675,13 +677,21 @@ SUBROUTINE Reflect2D( is, HS, BotTop, tBdry, nBdry, kappa, RefC, Npts )
      ray2D( is1 )%Amp   = ray2D( is )%Amp
      ray2D( is1 )%Phase = ray2D( is )%Phase + pi
   CASE ( 'F' )                 ! file
+     
+     allocate(thickness(1),temp1(1))
      temp1 = ray2D(is)%x(1)
+     WRITE( PRTFile, * ) '681, temp1',temp1
      call interp1(Top%x(1),Top%x(2),temp1,thickness)
+     WRITE( PRTFile, * ) 'thickness=',thickness
+     WRITE( PRTFile, * ) '683'
      i1 = (thickness(1) - min_thickness)/res_thickness*Npts + 1
      i2 = i1 -1 + Npts     
+     WRITE( PRTFile, * ) '685'
      RInt%theta = RadDeg * ABS( ATAN2( Th, Tg ) )           ! angle of incidence (relative to normal to bathymetry)
      IF ( RInt%theta > 90 ) RInt%theta = 180. - RInt%theta  ! reflection coefficient is symmetric about 90 degrees
+     WRITE( PRTFile, * ) '688'
      CALL InterpolateReflectionCoefficient( RInt, RefC(i1:i2), Npts, PRTFile )
+     WRITE( PRTFile, * ) '690'
      ray2D( is1 )%Amp   = ray2D( is )%Amp * RInt%R
      ray2D( is1 )%Phase = ray2D( is )%Phase + RInt%phi
   CASE ( 'A', 'G' )            ! half-space
