@@ -74,7 +74,7 @@ CONTAINS
 
        READ(  TRCFile, * ) NThickness,min_thickness,res_thickness  !number of thickness values
        READ(  TRCFile, * ) NTopPts
-       WRITE( PRTFile, * ) 'Number of points in top reflection coefficient for each thickness= ', NTopPts
+       WRITE( PRTFile, * ) 'Number of points in top reflection coefficient for each thickness= ', NTopPts,NThickness,min_thickness,res_thickness
 
        IF ( ALLOCATED( RTop ) ) DEALLOCATE( RTop )
        ALLOCATE( RTop( NTopPts ), Stat = IAllocStat )
@@ -82,6 +82,7 @@ CONTAINS
           CALL ERROUT( 'ReadReflectionCoefficient', 'Insufficient memory for top refl. coef.: reduce # points'  )
 
        READ(  TRCFile, * ) ( RTop( itheta ), itheta = 1, NThickness*NTopPts )
+       write(  PRTFile, * ) ( RTop( itheta ), itheta = 1, NThickness*NTopPts )
        CLOSE( TRCFile )
        RTop%phi = DegRad *  RTop%phi   ! convert to radians
     ELSE   ! should allocate something anyway, since variable is passed
